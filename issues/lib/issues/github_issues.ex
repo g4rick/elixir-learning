@@ -12,6 +12,10 @@ defmodule Issues.GithubIssues do
     "https://api.github.com/repos/#{user}/#{project}/issues"
   end
 
-  def handle_response(%{status_code: 200, body: body}), do: {:ok, body}
-  def handle_response(%{status_code: ___, body: body}), do: {:error, body}
+  def handle_response(%{status_code: 200, body: body}) do
+    {:ok, Poison.decode(body)}
+  end
+  def handle_response(%{status_code: ___, body: body}) do
+    {:error, Poison.decode(body)}
+  end
 end
