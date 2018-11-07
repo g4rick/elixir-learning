@@ -64,6 +64,10 @@ defmodule Issues.TableFormatter do
     map_join(column_widths, " | ", fn width -> "~-#{width}s" end) <> "~n"
   end
 
+  def puts_one_line_in_columns(fields, format) do
+    :io.format(format, fields)
+  end
+
   @doc """
   Generate the line that goes below the column headings. It is a string of
   hyphens, with + signs where the vertical bar between the columns goes.
@@ -71,12 +75,8 @@ defmodule Issues.TableFormatter do
   ## Example
     iex> widths = [5,6,9]
     iex> Issues.TableFormatter.separator(widths)
-    "-----+------+---------"
+    "------+--------+----------"
   """
-  def puts_one_line_in_columns(fields, format) do
-    :io.format(format, fields)
-  end
-
   def separator(column_widths) do
     map_join(column_widths, "-+-", fn width -> List.duplicate("-", width) end)
   end
