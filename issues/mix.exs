@@ -8,6 +8,8 @@ defmodule Issues.MixProject do
       elixir: "~> 1.7",
       escript: escript_config(),
       start_permanent: Mix.env() == :prod,
+      name: "Issues",
+      source_url: "https://github.com/g4rick/elixir-learning",
       deps: deps()
     ]
   end
@@ -23,7 +25,8 @@ defmodule Issues.MixProject do
   defp deps do
     [
       {:httpoison, "~> 1.0"},
-      {:poison, "~> 4.0"}
+      {:poison, "~> 4.0"},
+      {:ex_doc, "~> 0.19.1", only: :dev, runtime: false}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
     ]

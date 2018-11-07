@@ -23,10 +23,12 @@ defmodule Issues.TableFormatter do
   parameter contains the list of columns to extract.
 
   ## Example
-    iex> list = [Enum.into([{"a", "1"},{"b", "2"},{"c", "3"}], HashDict.new),
-    ...>         Enum.into([{"a", "4"},{"b", "5"},{"c", "6"}], HashDict.new)]
-    iex> Issues.TableFormatter.split_into_columns(list, ["a", "b", "c"])
-    [["1", "4"], ["2", "5"], ["3", "6"]]
+   ```
+    iex> list = [Enum.into([{"a", "1"},{"b", "2"},{"c", "3"}], HashDict.new),  
+    ...>         Enum.into([{"a", "4"},{"b", "5"},{"c", "6"}], HashDict.new)]  
+    iex> Issues.TableFormatter.split_into_columns(list, ["a", "b", "c"])  
+    [["1", "4"], ["2", "5"], ["3", "6"]]  
+  ```
   """
   def split_into_columns(rows, headers) do
     for header <- headers do
@@ -42,9 +44,11 @@ defmodule Issues.TableFormatter do
   a column, return a list contining the maximum width of each column
 
   ## Example
+  ```
     iex> data = [["cat", "wombat", "elk"], ["mongoose", "ant", "gnu"]]
     iex> Issues.TableFormatter.widths_of(data)
     [6, 8]
+  ```
   """
   def widths_of(columns) do
     for column <- columns, do: column |> map(&String.length/1) |> max
@@ -55,9 +59,11 @@ defmodule Issues.TableFormatter do
   We put `" | "` between each column.
 
   ## Example
+  ```
     iex> widths = [5,6,99]
     iex> Issues.TableFormatter.format_for(widths)
     "~-5s | ~-6s | ~-99s~n"
+  ```
   """
   def format_for(column_widths) do
     map_join(column_widths, " | ", fn width -> "~-#{width}s" end) <> "~n"
@@ -72,9 +78,11 @@ defmodule Issues.TableFormatter do
   hyphens, with + signs where the vertical bar between the columns goes.
 
   ## Example
+  ```
     iex> widths = [5,6,9]
     iex> Issues.TableFormatter.separator(widths)
     "------+--------+----------"
+  ```
   """
   def separator(column_widths) do
     map_join(column_widths, "-+-", fn width -> List.duplicate("-", width) end)
