@@ -17,7 +17,8 @@ defmodule WorkingWithMultipleProcesses do
       msg ->
         IO.puts("#{inspect(msg)}")
         receive_messages()
-      after 500 ->
+    after
+      500 ->
         IO.puts("timeout")
     end
   end
