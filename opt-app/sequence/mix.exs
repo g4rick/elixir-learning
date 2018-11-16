@@ -15,9 +15,7 @@ defmodule Sequence.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Sequence.Application, []},
-      env: [initial_number: 456],
-      registered: [:sequence]
+      mod: {Sequence.Application, []}
     ]
   end
 
