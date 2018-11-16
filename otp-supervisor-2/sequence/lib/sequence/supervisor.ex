@@ -14,7 +14,7 @@ defmodule Sequence.Supervisor do
     Supervisor.start_child(sup, supervisor(Sequence.SubSupervisor, [stash]))
   end
 
-  def init() do
+  def init(_) do
     supervise([], strategy: :one_for_one)
   end
 end

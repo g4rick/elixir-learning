@@ -2,7 +2,7 @@ defmodule Sequence.Stash do
   use GenServer
 
   # 外部api
-  
+
   def start_link(current_number) do
     {:ok, _pid} = GenServer.start_link(__MODULE__, current_number)
   end
@@ -22,5 +22,9 @@ defmodule Sequence.Stash do
 
   def handle_cast({:save_value, value}, _current_value) do
     {:noreply, value}
+  end
+
+  def init(args) do
+    {:ok, args}
   end
 end

@@ -1,4 +1,4 @@
-defmodule Sequence.Subsupervisor do
+defmodule Sequence.SubSupervisor do
   use Supervisor
 
   def start_link(stash_pid) do

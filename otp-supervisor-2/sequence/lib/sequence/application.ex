@@ -6,8 +6,15 @@ defmodule Sequence.Application do
   use Application
 
   def start(_type, _args) do
+    # 启动单一服务
+    # {:ok, _pid} = Sequence.Supervisor.start_link(123)
+    
     # List all child processes to be supervised
     children = [
+      %{
+        id: Sequence.Supervisor,
+        start: {Sequence.Supervisor, :start_link, [123]}
+      }
       # Starts a worker by calling: Sequence.Worker.start_link(arg)
       # {Sequence.Worker, arg},
     ]

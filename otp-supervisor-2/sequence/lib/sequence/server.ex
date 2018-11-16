@@ -15,10 +15,9 @@ defmodule Sequence.Server do
     GenServer.cast(__MODULE__, {:increment_number, delta})
   end
 
-
   # GenServer
   def init(stash_pid) do
-    current_number = Sqeuence.Stash.get_value(stash_pid)
+    current_number = Sequence.Stash.get_value(stash_pid)
     {:ok, {current_number, stash_pid}}
   end
 
@@ -31,6 +30,6 @@ defmodule Sequence.Server do
   end
 
   def terminate(_reason, {current_number, stash_pid}) do
-    Sqeuence.Stash.save_value(stash_pid, current_number)
+    Sequence.Stash.save_value(stash_pid, current_number)
   end
 end
