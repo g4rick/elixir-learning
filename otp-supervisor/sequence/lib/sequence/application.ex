@@ -3,6 +3,8 @@ defmodule Sequence.Application do
   # for more information on OTP Applications
   @moduledoc false
 
+  import Supervisor.Spec, warn: false
+  
   use Application
 
   def start(_type, _args) do
@@ -10,6 +12,7 @@ defmodule Sequence.Application do
     children = [
       # Starts a worker by calling: Sequence.Worker.start_link(arg)
       # {Sequence.Worker, arg},
+      worker(Sequence.Server, [123])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
