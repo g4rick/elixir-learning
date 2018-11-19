@@ -4,15 +4,14 @@ defmodule LineSigil do
   ## 示例用法
     iex> import LineSigil
     nil
-    iex> ~l"""
+    iex> ~l
     ...> one
     ...> two
     ...> three
-    ...> """
     ["one","two","three"]
   """
 
   def sigil_l(lines, _opts) do
-    lines |> String.rstrip |> String.split("|n")
+    lines |> String.trim_trailing() |> String.split("|n")
   end
 end
